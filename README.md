@@ -1,27 +1,19 @@
-# SmartGrid — Phase 1 Prototype
+# SmartGrid Phase 2 prototype
 
-A responsive, browser-based prototype of the SmartGrid energy monitoring dashboard.
+## Included
+- Responsive dashboard with simulated usage readings and illustrative chart
+- Block selector, local device labels, installation checklist, and alert history
+- Rule-based demo assistant (not connected to Gemini)
+- Optional JSON endpoint for readings from a server you control
+- CSV export, browser local storage, and basic offline app-shell caching
 
-## Run it
-Open `index.html` in a modern browser, or deploy this repository to Vercel as a static site.
+## Preview and publish
+Open `index.html` to preview. Service workers/offline caching require HTTPS or localhost. To publish with GitHub Pages: upload `index.html`, `manifest.webmanifest`, `sw.js`, and `README.md` to your repository root; go to **Settings → Pages**; choose **Deploy from a branch**, branch `main`, folder `/(root)`, then save.
 
-## What's included
-- Responsive sidebar navigation and hover/active states
-- Dashboard cards, illustrative usage chart, recent activity
-- Live Usage, Devices, Alerts, AI Assistant demo, Reports, Help & Safety, Settings
-- Login-screen prototype
-- Device onboarding preview
-- Predefined local assistant responses
-- CSV export of illustrative sample data
-- Explicit labels distinguishing demo data from real readings
+## Optional reading endpoint
+The Settings page accepts an endpoint URL you control. It should return JSON like:
+`{"power_kw":2.8,"energy_today_kwh":18.4,"status":"normal","timestamp":"2026-10-15T10:00:00Z"}`
+The endpoint must allow browser CORS requests.
 
-## Important limitations
-This is a front-end prototype. It does **not** implement real authentication, persistent storage, Gemini, live IoT/hardware connectivity, real alerts, or a production offline/PWA service worker. All electricity readings are simulated and clearly labelled. Do not treat the interface as an electrical safety or protection system.
-
-## Next milestones
-1. Review the UI and test navigation.
-2. Move to a structured app framework if needed.
-3. Add authentication and persistent storage.
-4. Add a secure device data endpoint and test with simulated device messages.
-5. Integrate Gemini through a server-side API route.
-6. Add and test offline caching and synchronization.
+## Limitations
+Readings are simulated unless an endpoint is configured. Device registration stores labels only; no ESP32/sensor connection exists. The assistant is fixed demo text and does not call an AI service. Local storage is not a shared database or backup. Secure login, user roles, cloud storage, authenticated device ingestion, push alerts, and robust offline synchronization are not implemented. This is not an electrical safety system; use certified protection hardware and qualified professionals.
